@@ -21,7 +21,7 @@ var romanToInt = function(s) {
     for(let symbol in symbols){
         if( s.indexOf(symbol) > -1){
             const count = s.split(symbol).length -1
-            s = s.replace(symbol,'')
+            s = s.split(symbol).join('')
             total += symbols[symbol] * count
         }
     }
