@@ -3,22 +3,9 @@ class BinarySearchTree {
     
     constructor() 
     { 
-        // root of a binary seach tree 
         this.root = null; 
     } 
 
-    // function to be implemented 
-    // insert(data) 
-    // remove(data) 
-                  
-  
-    // Helper function 
-    // findMinNode() 
-    // getRootNode() 
-    // inorder(node) 
-    // preorder(node)                
-    // postorder(node) 
-    // search(node, data) 
     insert(data){
         const newNode = new Node(data)
         
@@ -26,19 +13,12 @@ class BinarySearchTree {
             this.root = newNode;
         } 
         else{
-        // find the correct position in the  
-        // tree and add the node 
             this.insertNode(this.root, newNode); 
         }
     }
 
-    // Method to insert a node in a tree 
-    // it moves over the tree to find the location 
-    // to insert a node with a given data  
     insertNode(node, newNode) 
     { 
-        // if the data is less than the node 
-        // data move left of the tree  
         if(newNode.data < node.data) 
         { 
             // if left is null insert node here 
@@ -73,15 +53,9 @@ class BinarySearchTree {
         this.root = this.removeNode(this.root, data); 
     } 
     
-    // Method to remove node with a  
-    // given data 
-    // it recur over the tree to find the 
-    // data and removes it 
     removeNode(node, key) 
     { 
             
-        // if the root is null then tree is  
-        // empty 
         if(node === null) 
             return null; 
     
@@ -125,9 +99,6 @@ class BinarySearchTree {
                 return node; 
             } 
     
-            // Deleting node with two children 
-            // minumum node of the rigt subtree 
-            // is stored in aux 
             var aux = this.findMinNode(node.right); 
             node.data = aux.data; 
     
@@ -137,10 +108,8 @@ class BinarySearchTree {
     
     }
     
-    // search for a node with given data 
     search(node, data) 
     { 
-    // if trees is empty return null 
         if(node === null) 
             return null; 
     
