@@ -3,7 +3,7 @@ const {BinarySearchTree} = require('./BinarySearchTree')
 // create an object for the BinarySearchTree 
 var BST = new BinarySearchTree(); 
   
-// Inserting nodes to the BinarySearchTree 
+// Inserting 
 BST.insert(27);
 BST.insert(15); 
 BST.insert(25); 
