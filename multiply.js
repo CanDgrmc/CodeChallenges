@@ -1,10 +1,12 @@
 const multiply = function(num1, num2) {
+    
     const length1 = num1.length
     const length2 = num2.length
     const total = Array(length1 + length2).fill(0);
     
     if(length1 < 110 && length1 > 0 && length2 < 110 && length2 > 0 ){
         
+        // long multiplication algorithm:
         let i = length1 -1
         while(i >= 0){
             let carry = 0
