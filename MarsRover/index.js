@@ -48,7 +48,9 @@ function run (input) {
             x: parseInt(roverx),
             y: parseInt(rovery),
             heading: heading,
-            log: new Log('rover')
+            log: new Log('rover'),
+            limitX: fieldLimit.x,
+            limitY: fieldLimit.y
         })
 
         log.success('Next')

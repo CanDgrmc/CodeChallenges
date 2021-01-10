@@ -27,27 +27,31 @@ class Rover {
         x,
         y,
         heading,
+        limitX,
+        limitY,
         log
     }) {
         this.x = x
         this.y = y
         this.heading = heading
         this.log = log
+        this.limitX = limitX
+        this.limitY = limitY
     }
     move() {
         this.log.onGoing('Rover is moving')
         switch (this.heading) {
             case 'N':
-                this.y = this.y + 1
+                this.y = this.checkLimit(this.y+1, this.limitY)
                 break
             case 'S':
-                this.y = this.y - 1
+                this.y = this.checkLimit(this.y-1, this.limitY)
                 break
             case 'E':
-                this.x = this.x + 1
+                this.x = this.checkLimit(this.x+1, this.limitX)
                 break
             case 'W':
-                this.x = this.x - 1
+                this.x = this.checkLimit(this.x-1, this.limitX)
                 break
         }
 
@@ -61,6 +65,14 @@ class Rover {
         this.heading = newDirection
 
         this.log.trace(`new rover direction ${newDirection}`)
+    }
+
+    checkLimit(to,limit){
+        if(to <= limit && to >= 0){
+            return to
+        }else{
+            throw new Error('can not move over the limit')
+        }
     }
 }
 
