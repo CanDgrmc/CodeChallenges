@@ -27,15 +27,7 @@ const setFieldLimit = (x,y) => {
     fieldLimit.y = y
 
 }
-const secondLine = () => {
-    
-}
-const thirdLine = () => {
-    
-}
-const forthLine = () => {
-    
-}
+
 
 function run (input) {
     const log = new Log('main')
