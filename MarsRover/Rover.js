@@ -1,5 +1,5 @@
 class Rover {
-
+    uid
     x = 0
     y = 0
     heading = 'N'
@@ -29,7 +29,8 @@ class Rover {
         heading,
         limitX,
         limitY,
-        log
+        log,
+        uid
     }) {
         this.x = x
         this.y = y
@@ -37,12 +38,13 @@ class Rover {
         this.log = log
         this.limitX = limitX
         this.limitY = limitY
+        this.uid = uid
     }
     move() {
         this.log.onGoing('Rover is moving')
         switch (this.heading) {
             case 'N':
-                this.y = this.checkLimit(this.y+1, this.limitY)
+                this.y = this.checkLimit(this.y+1, this.limitY) 
                 break
             case 'S':
                 this.y = this.checkLimit(this.y-1, this.limitY)
@@ -71,9 +73,12 @@ class Rover {
         if(to <= limit && to >= 0){
             return to
         }else{
-            throw new Error('can not move over the limit')
+            
+            throw new Error('limit-exceeded')
         }
     }
+
+    
 }
 
 module.exports = Rover

@@ -31,7 +31,7 @@ const setFieldLimit = (x,y) => {
 
 function run (input) {
     const log = new Log('main')
-    const responsePositions = []
+    const responsePositions = {}
 
     const rows = input.split('\n').map( r => r.trim()).filter( r => r != '')
     const fieldRow = rows.splice(0,1)[0]
@@ -50,7 +50,8 @@ function run (input) {
             heading: heading,
             log: new Log('rover'),
             limitX: fieldLimit.x,
-            limitY: fieldLimit.y
+            limitY: fieldLimit.y,
+            uid: generateUID()
         })
 
         log.success('Next')
@@ -59,17 +60,29 @@ function run (input) {
         
         for(let action of roverActions){
             if(action == 'M'){
-                Rover.move()
+                try{
+                    Rover.move()
+
+                }
+                catch(e){
+                    log.error(e.message)
+                    log.error('###################',false)
+
+                    log.error(`Rover id: ${Rover.uid} ,Rover x: ${Rover.x}, Rover y: ${Rover.y}, heading: ${Rover.heading}`,false)
+                    log.error('###################',false)
+
+                }
             }else{
                 Rover.turn(action)
             }
         }
-
-        responsePositions.push([Rover.x, Rover.y, Rover.heading].join(' '))
+        
+        responsePositions[Rover.uid] = [Rover.x, Rover.y, Rover.heading].join(' ')
 
     }
     log.success('-RESPONSE-',false)
-    log.success(responsePositions,false)
+    console.log(responsePositions)
+    log.success(Object.values(responsePositions),false)
 }
 
 function trimRoverProps(props){
@@ -89,12 +102,20 @@ function trimRoverProps(props){
     
 }
 
+function generateUID() {
+    var firstPart = (Math.random() * 46656) | 0;
+    var secondPart = (Math.random() * 46656) | 0;
+    firstPart = ("000" + firstPart.toString(36)).slice(-3);
+    secondPart = ("000" + secondPart.toString(36)).slice(-3);
+    return firstPart + secondPart;
+}
+
 run(
     `
     5 5
     1 2 N
     LMLMLMLM
     M 3 3 E
-    MMRMMRMRRM
+    MMRMMRMRRMM
     `
     )

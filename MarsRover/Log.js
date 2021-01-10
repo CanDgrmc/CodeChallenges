@@ -22,6 +22,14 @@ class Log {
         console.log(`${this.source}::${msg}`.underline)
     }
 
+    error(msg,tag=true){
+        if(tag){
+            console.log(`${this.source}::${msg}`.red)
+        }else{
+            console.log(`${msg}`.red)
+        }
+    }
+
 }
 
 module.exports = Log
